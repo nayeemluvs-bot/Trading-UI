@@ -50,6 +50,7 @@ pipeline {
       steps {
         sh '''
           export NODE_OPTIONS=--openssl-legacy-provider
+          export CI=false
           node -e "const p=require('./package.json'); process.exit(p.scripts && p.scripts.build ? 0 : 1)" \
           && npm run build \
           || { echo "No build script found, or build failed; inspect package.json and adjust this stage."; exit 1; }
