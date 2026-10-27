@@ -49,7 +49,10 @@ pipeline {
     stage('Build') {
       steps {
         sh '''
-          node -e "const p=require('./package.json'); process.exit(p.scripts && p.scripts.build ? 0 : 1)"             && npm run build             || { echo "No build script found, or build failed; inspect package.json and adjust this stage."; exit 1; }
+          export NODE_OPTIONS=--openssl-legacy-provider
+          node -e "const p=require('./package.json'); process.exit(p.scripts && p.scripts.build ? 0 : 1)" \
+          && npm run build \
+          || { echo "No build script found, or build failed; inspect package.json and adjust this stage."; exit 1; }
         '''
       }
     }
