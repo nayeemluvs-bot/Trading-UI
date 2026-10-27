@@ -14,7 +14,7 @@ describe('when the home component is called',()=>{
     it('should have called handle click book function', () => {
         const spy = jest.spyOn(wrapper.instance(), 'handleSubmit');
         wrapper.instance().forceUpdate();
-        wrapper.find('#submit').simulate('click',{
+        wrapper.find('#submitsearch').simulate('click',{
           preventDefault: () => {
           }
          });
